@@ -2,7 +2,7 @@
   <section :class="[!validOrNot ? 'background' : null]">
     <base-card>
       <h2>Register as a coach now!</h2>
-      <CoachForm @valid="changeClass"></CoachForm>
+      <CoachForm @valid="changeClass" @save-data="saveData"></CoachForm>
     </base-card>
   </section>
 </template>
@@ -20,6 +20,11 @@ export default defineComponent({
   methods: {
     changeClass(isValid: boolean) {
       this.validOrNot = isValid;
+    },
+    saveData(data: any) {
+      this.$store.dispatch("coaches/registerCoach", data);
+      this.$router.replace("/coaches"); //replace doesn't let you go back to page where you came from
+      //this.$router.push("/coaches");
     },
   },
 });

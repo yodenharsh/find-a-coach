@@ -14,4 +14,15 @@ export default {
   hasCoaches(state: { coaches: coachObject[] }) {
     return state.coaches && state.coaches.length > 0;
   },
+  isCoach(
+    _: any,
+    getters: { coaches: coachObject | any },
+    _2: any,
+    rootGetters: { userId: string }
+  ) {
+    const coaches = getters.coaches;
+    const userId = rootGetters.userId;
+    console.log(coaches.some((coach: { id: string }) => coach.id === userId));
+    return coaches.some((coach: { id: string }) => coach.id === userId);
+  },
 };

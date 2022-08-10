@@ -64,7 +64,7 @@ export default defineComponent({
       isValid: true as boolean,
     };
   },
-  emits: ["valid"],
+  emits: ["valid", "save-data"],
   methods: {
     submitForm() {
       if (
@@ -83,6 +83,7 @@ export default defineComponent({
           rate: this.rate,
           areas: this.areas,
         };
+        this.$emit("save-data", formData);
       }
     },
     closeDialog() {

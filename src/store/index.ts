@@ -6,7 +6,9 @@ import coachModule from "./modules/coaches/index";
 import requestsModule from "./modules/requests/index";
 
 export default createStore({
-  state: {},
+  state: {
+    userId: "c3",
+  },
   getters: getters,
   mutations: mutations,
   actions: actions,
