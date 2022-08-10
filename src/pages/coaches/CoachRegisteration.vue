@@ -10,6 +10,15 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import CoachForm from "../../components/coaches/CoachForm.vue";
+
+interface form {
+  first: string;
+  last: string;
+  desc: string;
+  rate: number;
+  areas: string[];
+}
+
 export default defineComponent({
   components: { CoachForm },
   data() {
@@ -21,7 +30,7 @@ export default defineComponent({
     changeClass(isValid: boolean) {
       this.validOrNot = isValid;
     },
-    saveData(data: any) {
+    saveData(data: form) {
       this.$store.dispatch("coaches/registerCoach", data);
       this.$router.replace("/coaches"); //replace doesn't let you go back to page where you came from
       //this.$router.push("/coaches");

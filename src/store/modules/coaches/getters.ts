@@ -22,7 +22,6 @@ export default {
   ) {
     const coaches = getters.coaches;
     const userId = rootGetters.userId;
-    console.log(coaches.some((coach: { id: string }) => coach.id === userId));
     return coaches.some((coach: { id: string }) => coach.id === userId);
   },
 };

@@ -65,7 +65,7 @@ export default defineComponent({
   },
   created() {
     this.selectedCoach = this.$store.getters["coaches/coaches"].find(
-      (coach: { id: any }) => coach.id === this.id
+      (coach: { id: string }) => coach.id === this.id
     );
   },
 });
