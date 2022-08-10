@@ -1,3 +1,51 @@
 <template>
-  <h1>Requests</h1>
+  <section>
+    <base-card>
+      <header>
+        <h2>Requests received</h2>
+      </header>
+      <ul v-if="hasRequests">
+        <request-item
+          v-for="request in requests"
+          :key="request.id"
+          :email="request.userEmail"
+          :message="request.message"
+        ></request-item>
+      </ul>
+      <h3 v-else>You haven't received any requests yet!</h3></base-card
+    >
+  </section>
 </template>
+
+<script lang="ts">
+export default defineComponent({
+  components: { RequestItem },
+  computed: {
+    ...mapGetters({
+      requests: "requests/requests",
+      hasRequests: "requests/hasRequests",
+    }),
+  },
+});
+
+import { defineComponent } from "vue";
+import { mapGetters } from "vuex";
+import RequestItem from "../../components/requests/RequestItem.vue";
+</script>
+
+<style scoped>
+header {
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  margin: 2rem auto;
+  padding: 0;
+  max-width: 30rem;
+}
+
+h3 {
+  text-align: center;
+}
+</style>

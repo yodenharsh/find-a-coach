@@ -4,7 +4,9 @@ import requestsMutations from "./mutations";
 
 export default {
   namespaced: true,
-  state: {},
+  state: {
+    requests: [],
+  },
   mutations: requestsMutations,
   getters: requestsGetters,
   actions: requestsActions,
