@@ -1,5 +1,5 @@
 interface coachData {
-  id: string;
+  id?: string;
   last: string;
   first: string;
   desc: string;
@@ -8,7 +8,8 @@ interface coachData {
 }
 
 export default {
-  registerCoach(context: any, data: coachData) {
+  async registerCoach(context: any, data: coachData) {
+    const userId = context.rootGetters.userId;
     const coachData = {
       id: context.rootGetters.userId,
       firstName: data.first,
@@ -17,6 +18,20 @@ export default {
       hourlyRate: data.rate,
       areas: data.areas,
     };
-    context.commit("registerCoach", coachData);
+    const response = await fetch(
+      `https://vue-htttp-practice-default-rtdb.asia-southeast1.firebasedatabase.app/coaches/${userId}.json`,
+      {
+        method: "PUT",
+        body: JSON.stringify(coachData),
+      }
+    );
+    //const responseData = await response.json();
+    if (!response.ok) {
+      //error
+    }
+    context.commit("registerCoach", {
+      ...coachData,
+      id: userId,
+    });
   },
 };
