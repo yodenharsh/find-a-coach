@@ -24,4 +24,12 @@ export default {
     const userId = rootGetters.userId;
     return coaches.some((coach: { id: string }) => coach.id === userId);
   },
+  shouldUpdate(state: { lastFetch: number | null }): boolean {
+    const lastFetch: number | null = state.lastFetch;
+    if (!lastFetch) {
+      return true;
+    }
+    const currentTimeStamp: number = new Date().getTime();
+    return (currentTimeStamp - lastFetch) / 1000 > 60;
+  },
 };

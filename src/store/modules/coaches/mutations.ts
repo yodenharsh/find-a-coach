@@ -14,4 +14,7 @@ export default {
   setCoaches(state: { coaches: coachData }, payload: coachData) {
     state.coaches = payload;
   },
+  setFetchTime(state: { lastFetch: number }) {
+    state.lastFetch = new Date().getTime();
+  },
 };
