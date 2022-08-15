@@ -1,13 +1,14 @@
 <template>
   <div>
-    <div v-if="!!error" class="foreground">
+    <div class="foreground" v-if="!!error">
       <base-dialog
         title="ERROR"
         :desc="'Please send this message to the company: ' + error"
         @close="closeDialog"
       ></base-dialog>
+      <p>Should appear</p>
     </div>
-    <section v-else :class="[error ? 'background' : null]">
+    <section v-if="!error" :class="[error ? 'background' : null]">
       <base-card>
         <header>
           <h2>Requests received</h2>
@@ -65,7 +66,7 @@ export default defineComponent({
 });
 
 import { defineComponent } from "vue";
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 import RequestItem from "../../components/requests/RequestItem.vue";
 </script>
 

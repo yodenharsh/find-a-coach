@@ -40,15 +40,18 @@ export default {
     context.commit("addRequests", newRequest);
   },
   async fetchRequests(context: {
-    rootGetters: { userId: any };
+    rootGetters: { userId: any; token: string };
     commit: (
       arg0: string,
       arg1: { id: string; coachId: any; userEmail: any; message: any }[]
     ) => void;
   }) {
     const coachId = context.rootGetters.userId;
+    const token = context.rootGetters.token;
+    console.log(token);
     const response: Response = await fetch(
-      `https://vue-htttp-practice-default-rtdb.asia-southeast1.firebasedatabase.app/requests/${coachId}.json`
+      `https://vue-htttp-practice-default-rtdb.asia-southeast1.firebasedatabase.app/requests/${coachId}.json?auth=` +
+        token
     );
     const responseData = await response.json();
 

@@ -5,6 +5,7 @@
         <dialog open>
           <h2>{{ title }}</h2>
           <h4>{{ desc }}</h4>
+          <slot></slot>
           <base-button @click="$emit('close')">Close</base-button>
         </dialog>
       </div>

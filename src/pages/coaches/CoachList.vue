@@ -15,7 +15,13 @@
             <base-button mode="outline" @click="loadCoaches(true)"
               >Refresh</base-button
             >
-            <base-button link to="/register" v-if="!isCoach && !isLoading"
+            <base-button link to="/auth" v-if="!isLoading && !isAuthenticated"
+              >Login or Sign up</base-button
+            >
+            <base-button
+              link
+              to="/register"
+              v-if="isAuthenticated && !isCoach && !isLoading"
               >Register as coach</base-button
             >
             <!--link = true-->
@@ -70,6 +76,7 @@ export default defineComponent({
     ...mapGetters({
       coachesList: "coaches/coaches",
       hasCoaches: "coaches/hasCoaches",
+      isAuthenticated: "isAuthenticated",
     }),
     filteredCoaches() {
       const coaches = this.$store.getters["coaches/coaches"];

@@ -7,7 +7,9 @@ import requestsModule from "./modules/requests/index";
 
 export default createStore({
   state: {
-    userId: "c3",
+    userId: null as null | string,
+    token: null as null | string,
+    tokenExpiration: null as null | string,
   },
   getters: getters,
   mutations: mutations,
