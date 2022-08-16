@@ -10,8 +10,29 @@
 <script lang="ts">
 import TheHeader from "./components/TheHeader.vue";
 import { defineComponent } from "vue";
+import { mapActions, mapGetters } from "vuex";
 export default defineComponent({
   components: { TheHeader },
+  methods: {
+    ...mapActions({
+      tryLogin: "tryLogin",
+    }),
+  },
+  computed: {
+    ...mapGetters({
+      didAutoLogout: "didAutoLogout",
+    }),
+  },
+  watch: {
+    didAutoLogout(curr, old) {
+      if (curr && curr !== old) {
+        this.$router.replace("/coaches");
+      }
+    },
+  },
+  created() {
+    this.tryLogin();
+  },
 });
 </script>
 

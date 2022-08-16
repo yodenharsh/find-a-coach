@@ -9,7 +9,8 @@ export default createStore({
   state: {
     userId: null as null | string,
     token: null as null | string,
-    tokenExpiration: null as null | string,
+    tokenExpiration: null as null | string, //not used
+    didAutoLogout: false as boolean,
   },
   getters: getters,
   mutations: mutations,

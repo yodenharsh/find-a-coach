@@ -28,8 +28,12 @@ export default defineComponent({
   },
   methods: {
     ...mapActions({
-      logout: "logout",
+      logoutAction: "logout",
     }),
+    logout() {
+      this.logoutAction();
+      this.$router.push("/auth");
+    },
   },
   components: { BaseButton },
 });

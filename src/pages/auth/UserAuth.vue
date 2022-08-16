@@ -97,6 +97,9 @@ export default defineComponent({
         } else {
           await this.$store.dispatch("signup", actionPayload);
         }
+        const redirectURL: string =
+          "/" + (this.$route.query.redirect || "coaches");
+        this.$router.replace(redirectURL);
       } catch (error) {
         if (error instanceof Error) {
           this.error =
