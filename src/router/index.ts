@@ -6,6 +6,7 @@ import CoachRegisteration from "../pages/coaches/CoachRegisteration.vue";
 import ContactCoach from "../pages/requests/ContactCoach.vue";
 import RequestRecieved from "../pages/requests/RequestRecieved.vue";
 import UserAuth from "../pages/auth/UserAuth.vue";
+import store from "../store/index";
 
 const routes: Array<RouteRecordRaw> = [
   { path: "/", redirect: "/coaches" },
@@ -15,16 +16,34 @@ const routes: Array<RouteRecordRaw> = [
     props: true,
     children: [{ path: "contact", component: ContactCoach }],
   },
-  { path: "/register", component: CoachRegisteration },
-  { path: "/requests", component: RequestRecieved },
+  {
+    path: "/register",
+    component: CoachRegisteration,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/requests",
+    component: RequestRecieved,
+    meta: { requiresAuth: true },
+  },
   { path: "/coaches", component: CoachList },
-  { path: "/auth", component: UserAuth },
+  { path: "/auth", component: UserAuth, meta: { requiresUnAuth: true } },
   { path: "/:notFound(.*)", component: NotFound },
 ];
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+});
+
+router.beforeEach(function (to, _, next) {
+  if (to.meta.requiresAuth && !store.getters.isAuthenticated) {
+    next("/auth");
+  } else if (to.meta.requiresUnAuth && store.getters.isAuthenticated) {
+    next("/coaches");
+  } else {
+    next();
+  }
 });
 
 export default router;
