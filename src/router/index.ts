@@ -1,12 +1,19 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 import NotFound from "../pages/NotFound.vue";
-import CoachDetail from "../pages/coaches/CoachDetails.vue";
+//import CoachDetail from "../pages/coaches/CoachDetails.vue";
 import CoachList from "../pages/coaches/CoachList.vue";
-import CoachRegisteration from "../pages/coaches/CoachRegisteration.vue";
-import ContactCoach from "../pages/requests/ContactCoach.vue";
-import RequestRecieved from "../pages/requests/RequestRecieved.vue";
-import UserAuth from "../pages/auth/UserAuth.vue";
+//import CoachRegisteration from "../pages/coaches/CoachRegisteration.vue";
+//import ContactCoach from "../pages/requests/ContactCoach.vue";
+//import RequestRecieved from "../pages/requests/RequestRecieved.vue";
+//import UserAuth from "../pages/auth/UserAuth.vue";
 import store from "../store/index";
+
+const CoachDetail = () => import("../pages/coaches/CoachDetails.vue");
+const CoachRegisteration = () =>
+  import("../pages/coaches/CoachRegisteration.vue");
+const ContactCoach = () => import("../pages/requests/ContactCoach.vue");
+const RequestRecieved = () => import("../pages/requests/RequestRecieved.vue");
+const UserAuth = () => import("../pages/auth/UserAuth.vue");
 
 const routes: Array<RouteRecordRaw> = [
   { path: "/", redirect: "/coaches" },
